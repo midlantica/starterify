@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link }  from 'react-router';
-import packageJSON from '../../package.json';
+import ContactList from './ContactList';
 
 export default React.createClass({
   returnSomething(something) {
@@ -8,18 +8,20 @@ export default React.createClass({
     return something;
   },
   render() {
-    const version = packageJSON.version;
+    var body = ( <ContactList /> );
+    if(this.props.children) {
+      body = this.props.children
+    }
 
     return (
       <div>
         <header>
-          <h1>React Starterify {version}</h1>
+          <h1>Contact List</h1>
           <Link to="/about">About</Link>
-          <Link to="/poweredby">Powered by</Link>
         </header>
-        <section>
-          {this.props.children || 'Welcome to React Starterify'}
-        </section>
+        <main>
+          {body}
+        </main>
       </div>
     )
   }
